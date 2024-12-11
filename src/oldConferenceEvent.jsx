@@ -123,7 +123,6 @@ const ConferenceEvent = () => {
       </>
     );
   };
-
   const calculateTotalCost = (section) => {
     let totalCost = 0;
     if (section === "venue") {
@@ -141,7 +140,6 @@ const ConferenceEvent = () => {
         }
       });
     }
-
     return totalCost;
   };
   const venueTotalCost = calculateTotalCost("venue");
@@ -310,17 +308,21 @@ const ConferenceEvent = () => {
               </div>
 
               <div className="input-container venue_selection">
-                <label htmlFor="numberOfPeople">
-                  <h3>Number of People:</h3>
-                </label>
-                <input
-                  type="number"
-                  className="input_box5"
-                  id="numberOfPeople"
-                  value={numberOfPeople}
-                  onChange={(e) => setNumberOfPeople(parseInt(e.target.value))}
-                  min="1"
-                />
+                <div className="input-container venue_selection">
+                  <label htmlFor="numberOfPeople">
+                    <h3>Number of People:</h3>
+                  </label>
+                  <input
+                    type="number"
+                    className="input_box5"
+                    id="numberOfPeople"
+                    value={numberOfPeople}
+                    onChange={(e) =>
+                      setNumberOfPeople(parseInt(e.target.value))
+                    }
+                    min="1"
+                  />
+                </div>
               </div>
               <div className="meal_selection">
                 {mealsItems.map((item, index) => (
@@ -342,14 +344,13 @@ const ConferenceEvent = () => {
                   </div>
                 ))}
               </div>
-              <div className="total_cost">Total Cost: {mealsTotalCost} </div>
+              <div className="total_cost">Total Cost: {mealsTotalCost}</div>
             </div>
           </div>
         ) : (
           <div className="total_amount_detail">
             <TotalCost
               totalCosts={totalCosts}
-              handleClick={handleToggleItems}
               ItemsDisplay={() => <ItemsDisplay items={items} />}
             />
           </div>
